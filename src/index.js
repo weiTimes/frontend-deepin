@@ -11,26 +11,4 @@
 // require('./algorithms/阶乘');
 // require('./algorithms/二叉树遍历');
 
-var isValid = function (s) {
-  const map = new Map([
-    ['(', ')'],
-    ['{', '}'],
-    ['[', ']'],
-  ]);
-
-  const stack = [];
-
-  for (let i = 0; i < s.length; i++) {
-    if (map.has(s[i])) {
-      stack.push(s[i]);
-    } else {
-      const top = stack.pop();
-
-      if (!stack.length || s[i] !== map.get(top)) return false;
-    }
-  }
-
-  return stack.length === 0;
-};
-
-isValid('()');
+require("./设计模式/工厂模式/factory");

@@ -1,8 +1,12 @@
 {
   "scripts": {
-    "start": "nodemon src/*.js"
+    "start": "nodemon src/*.js",
+    "live": "node ./live-server.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "live-server": "^1.2.2"
   }
 }

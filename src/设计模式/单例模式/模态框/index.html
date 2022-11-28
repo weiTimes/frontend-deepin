@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>实现一个全局模态框</title>
+  </head>
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100vh;
+    }
+
+    #open {
+      margin-right: 20px;
+    }
+
+    #modal {
+      width: 200px;
+      height: 200px;
+      background-color: bisque;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid #0aa;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <button id="open">打开</button>
+      <button id="close">关闭</button>
+    </div>
+  </body>
+  <script>
+    // 使用闭包实现单例模式
+    const Modal = (function () {
+      let modal = null;
+
+      return function () {
+        if (!modal) {
+          modal = document.createElement("div");
+
+          modal.id = "modal";
+          modal.innerHTML = "我是一个全局模态框";
+          modal.style.display = "none";
+
+          document.body.appendChild(modal);
+        }
+
+        return modal;
+      };
+    })();
+
+    // 实现类实现单例模式
+    // class Modal {
+    //   static getInstance() {
+    //     if (!Modal.instance) {
+    //       Modal.instance = document.createElement("div");
+
+    //       Modal.instance.id = "modal";
+    //       Modal.instance.display = "none";
+    //       Modal.instance.innerHTML = "我是一个全局模态框";
+
+    //       document.body.appendChild(Modal.instance);
+    //     }
+
+    //     return Modal.instance;
+    //   }
+    // }
+
+    document.getElementById("open").addEventListener("click", function () {
+      const modal = Modal();
+
+      modal.style.display = "block";
+    });
+
+    document.getElementById("close").addEventListener("click", function () {
+      const modal = Modal();
+
+      modal.style.display = "none";
+    });
+  </script>
+</html>
