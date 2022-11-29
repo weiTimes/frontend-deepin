@@ -2,7 +2,7 @@
  * @Author: ywhoo
  * @Date: 2022-11-28 15:30:09
  * @Last Modified by: ywhoo
- * @Last Modified time: 2022-11-28 15:33:59
+ * @Last Modified time: 2022-11-29 11:34:37
  *
  * 浅拷贝
  */
@@ -27,10 +27,13 @@ const copyByCreate = Object.create(
   Object.getOwnPropertyDescriptors(animal)
 );
 
+// 方法三 Object.assin
+// Object.assign(target, ...sources);
+
 const data = {
   a: 1,
   b: {
-    c: "h",
+    c: 'h',
   },
 };
 
