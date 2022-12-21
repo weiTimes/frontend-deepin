@@ -2,7 +2,7 @@
  * @Author: ywhoo
  * @Date: 2022-12-21 16:32:44
  * @Last Modified by: ywhoo
- * @Last Modified time: 2022-12-21 16:54:49
+ * @Last Modified time: 2022-12-21 17:16:08
  *
  * 发布订阅模式
  * 实现一个 Events 模块，可以实现自定义事件的订阅、触发、移除功能
@@ -49,6 +49,7 @@ class EventEmitter {
     let eventMap = this.events.get(eventName);
 
     if (!eventMap) {
+      // 使用 Map 存储，能够使用函数包装处理函数，在触发时方便传入参数
       eventMap = this.events.set(eventName, new Map()).get(eventName);
     }
 
@@ -73,7 +74,6 @@ events.on('sleep', fn1, 'by ywhoo');
 events.on('sleep', fn2, 'by hefeng');
 events.off('sleep', fn1, 'by no one');
 
-// 只会被触发一次，触发后会被自动移除
 events.once('sleep', fn3, 'by hefeng');
 
 events.fire('sleep');
