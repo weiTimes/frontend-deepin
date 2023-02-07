@@ -2,7 +2,7 @@
  * @Author: ywhoo
  * @Date: 2022-11-27 20:11:39
  * @Last Modified by: ywhoo
- * @Last Modified time: 2022-11-29 11:21:34
+ * @Last Modified time: 2023-02-02 20:40:18
  *
  * 实现对象深拷贝/模拟 JAVA 中的克隆接口/JavaScript 实现原型模式
  */
@@ -12,9 +12,9 @@ const isType = (obj) => (key) => {
 };
 
 const liLei = {
-  name: "lilei",
+  name: 'lilei',
   age: 28,
-  habits: ["coding", "hiking", "running"],
+  habits: ['coding', 'hiking', 'running'],
 };
 
 // 方法1，使用 JSON.stringify，仅在严格对象中可使用，因为它无法处理 function/正则等，会将其丢失
@@ -27,15 +27,15 @@ function cloneJson(obj) {
 function deepClone(obj) {
   const isQuoteType = (o) => {
     const typeByToString = isType(o);
-    const isObject = typeByToString("Object");
-    const isArray = typeByToString("Array");
+    const isObject = typeByToString('Object');
+    const isArray = typeByToString('Array');
 
     return isObject || isArray;
   };
 
   if (!obj || !isQuoteType(obj)) return obj;
 
-  let res = isType(obj)("Array") ? [] : {};
+  let res = isType(obj)('Array') ? [] : {};
 
   for (let prop in obj) {
     if (obj.hasOwnProperty(prop)) {
@@ -70,15 +70,16 @@ function deepLoop(obj) {
     let res = parent;
 
     if (key !== undefined) {
-      res = parent[key] = isType(data)("Array") ? [] : {};
+      res = parent[key] = isType(data)('Array') ? [] : {};
     }
 
     for (let prop in data) {
       const item = data[prop];
-      const isArray = isType(item)("Array");
-      const isQuote = isType(item)("Object") || isArray;
+      const isArray = isType(item)('Array');
+      const isQuote = isType(item)('Object') || isArray;
 
       if (isQuote) {
+        // 只有引入类型才会入栈
         stack.push({
           parent: res,
           key: prop,
@@ -131,15 +132,15 @@ function deepCloneNoCircle(obj) {
     }
 
     if (key !== undefined) {
-      res = parent[key] = isType(data)("Array") ? [] : {};
+      res = parent[key] = isType(data)('Array') ? [] : {};
     }
 
     memoMap.set(data, res);
 
     for (let prop in data) {
       const item = data[prop];
-      const isArray = isType(item)("Array");
-      const isQuote = isType(item)("Object") || isArray;
+      const isArray = isType(item)('Array');
+      const isQuote = isType(item)('Object') || isArray;
 
       if (isQuote) {
         stack.push({
@@ -162,7 +163,7 @@ function createData(deep, breadth) {
   var temp = data;
 
   for (var i = 0; i < deep; i++) {
-    temp = temp["data"] = {};
+    temp = temp['data'] = {};
 
     for (var j = 0; j < breadth; j++) {
       temp[j] = j;
@@ -187,7 +188,7 @@ var obj = {
       c1: 1,
     },
   },
-  a3: ["h", "e", "l"],
+  a3: ['h', 'e', 'l'],
 };
 
 // var b = {};

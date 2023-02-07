@@ -5,6 +5,14 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "node",
+      "request": "launch",
+      "name": "当前文件",
+      "skipFiles": ["<node_internals>/**"],
+      // ${file} 的意思是，当我们启动调试的时候，调试的程序就是当前 focus 的文件。
+      "program": "${file}"
+    },
+    {
       "name": "Launch Chrome",
       "request": "launch",
       "type": "chrome",

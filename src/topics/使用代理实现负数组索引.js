@@ -13,6 +13,6 @@ const proxyArray = new Proxy(array, {
   },
 });
 
-proxyArray[-1] = 'ywhoo';
+// proxyArray[-1] = 'ywhoo';
 
 console.log(proxyArray[-1]);
